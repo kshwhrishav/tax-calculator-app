@@ -24,6 +24,16 @@ function calculateTax(grossIncome) {
   const STANDARD_DEDUCTION = 75000;
   let taxableIncome = Math.max(0, grossIncome - STANDARD_DEDUCTION);
 
+  if (grossIncome <= 1200000 || taxableIncome <= 1275000) {
+    return {
+      breakdown: [{ slab: "No Tax", taxableIncome, rate: 0, tax: 0 }],
+      totalTax: 0,
+      grossIncome,
+      standardDeduction: STANDARD_DEDUCTION,
+      taxableIncome,
+    };
+  }
+
   if (taxableIncome <= 400000) {
     return {
       breakdown: [{ slab: "No Tax", taxableIncome, rate: 0, tax: 0 }],
